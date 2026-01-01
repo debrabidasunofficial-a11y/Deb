@@ -131,19 +131,20 @@ iframe{
 /* Add Science*/
 .science-section{
   margin:50px 0;
-  padding:0 10px;
+  padding:0 20px;
 }
 
+/* Section title and description */
 .science-section h2{
-  font-size:24px;
+  font-size:28px;
   text-align:center;
   margin-bottom:10px;
 }
 
 .science-section p{
   text-align:center;
-  font-size:14px;
-  margin-bottom:20px;
+  font-size:16px;
+  margin-bottom:25px;
   color:#ccc;
 }
 
@@ -191,13 +192,13 @@ iframe{
   padding-bottom:40px;
 }
 
-/* Physics */
+/* Physics gradient */
 .science-card.physics{
   background:linear-gradient(135deg, rgba(20,30,60,0.85), rgba(10,15,30,0.85));
   border-top:3px solid rgba(120,160,255,0.6);
 }
 
-/* Chemistry */
+/* Chemistry gradient */
 .science-card.chemistry{
   background:linear-gradient(135deg, rgba(20,60,40,0.85), rgba(10,30,20,0.85));
   border-top:3px solid rgba(120,255,180,0.6);
@@ -232,7 +233,13 @@ iframe{
 .science-card.expanded .full-text{
   display:block;
 }
-  
+
+/* Responsive */
+@media(max-width:700px){
+  .science-card{
+    flex:0 0 80%;
+  }
+}
   /* Footer */
 footer{
   padding:50px 12%;
@@ -295,7 +302,7 @@ footer a{
   <!-- PHYSICS SECTION -->
 <section class="science-section">
   <h2>Physics</h2>
-  <p>Stories of scientists and innovations in Physics. Swipe to see more. Tap a card to expand.</p>
+  <p>Stories of scientists and innovations in Physics. Swipe cards to explore. Tap a card to expand inline.</p>
 
   <div class="science-carousel">
     <div class="science-track" id="physicsTrack">
@@ -332,7 +339,7 @@ footer a{
 <!-- CHEMISTRY SECTION -->
 <section class="science-section">
   <h2>Chemistry</h2>
-  <p>Stories of scientists and innovations in Chemistry. Swipe to see more. Tap a card to expand.</p>
+  <p>Stories of scientists and innovations in Chemistry. Swipe cards to explore. Tap a card to expand inline.</p>
 
   <div class="science-carousel">
     <div class="science-track" id="chemistryTrack">
@@ -446,18 +453,15 @@ const observer=new IntersectionObserver(e=>{
 },{threshold:0.15});
 sections.forEach(s=>observer.observe(s));
 
-// Expand inline cards
+// Inline card expand
 document.querySelectorAll(".science-card").forEach(card=>{
   card.addEventListener("click", ()=>{
     const expanded = card.classList.contains("expanded");
-    // Close all cards in same section
     const track = card.closest(".science-track");
     track.querySelectorAll(".science-card").forEach(c=>c.classList.remove("expanded"));
-    // Toggle clicked card
     if(!expanded) card.classList.add("expanded");
   });
 });
 </script>
-
 </body>
 </html>

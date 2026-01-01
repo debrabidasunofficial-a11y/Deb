@@ -129,91 +129,81 @@ iframe{
 }
 
 /* Add Science*/
+  
+/* Carousel wrapper */
 .science-carousel{
   position:relative;
   overflow:hidden;
   margin-top:30px;
 }
 
+/* Track container for swipe */
 .science-track{
   display:flex;
-  transition:transform 0.6s ease;
+  gap:24px;
+  scroll-behavior:smooth;
+  overflow-x: auto;
+  padding-bottom:10px;
+}
+.science-track::-webkit-scrollbar{
+  display:none;
 }
 
+/* Card style */
 .science-card{
-  min-width:320px;
-  margin-right:24px;
+  flex:0 0 auto;
+  min-width:300px;
   border-radius:20px;
   padding:28px;
   cursor:pointer;
+  color:#fff;
 }
 
+/* Physics card */
+.science-card.physics{
+  background:linear-gradient(135deg, rgba(20,30,60,0.85), rgba(10,15,30,0.85));
+  border-top:3px solid rgba(120,160,255,0.6);
+}
+
+/* Chemistry card */
+.science-card.chemistry{
+  background:linear-gradient(135deg, rgba(20,60,40,0.85), rgba(10,30,20,0.85));
+  border-top:3px solid rgba(120,255,180,0.6);
+}
+
+/* Card texts */
 .science-card h3{
-  margin:0;
+  margin:0 0 8px 0;
   font-size:18px;
 }
 
 .science-card span{
   display:block;
-  margin:6px 0 12px;
   font-size:13px;
   color:#bdbdbd;
+  margin-bottom:10px;
 }
 
 .science-card p{
   font-size:14px;
-  color:#cfcfcf;
+  line-height:1.6;
 }
 
-/* Physics style */
-.science-card.physics{
-  background:linear-gradient(135deg, rgba(20,30,60,0.75), rgba(10,15,30,0.75));
-  border-top:3px solid rgba(120,160,255,0.6);
+/* Section heading */
+.science-section h2{
+  margin-bottom:6px;
 }
 
-/* Chemistry style */
-.science-card.chemistry{
-  background:linear-gradient(135deg, rgba(20,60,40,0.75), rgba(10,30,20,0.75));
-  border-top:3px solid rgba(120,255,180,0.6);
+.science-section p{
+  margin-bottom:20px;
+  color:#ccc;
+  font-size:14px;
 }
 
-/* arrows */
-.carousel-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.6);
-  border:none;
-  color:#fff;
-  font-size:18px;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  cursor:pointer;
+/* Optional: drag cursor */
+.science-track.grabbing{
+  cursor:grabbing;
 }
-
-.carousel-btn.left{left:-10px}
-.carousel-btn.right{right:-10px}
-
-/* dots */
-.carousel-dots{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin-top:18px;
-}
-
-.carousel-dots span{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#666;
-}
-
-.carousel-dots span.active{
-  background:#fff;
-}
-  
   /* Footer */
 footer{
   padding:50px 12%;
@@ -273,61 +263,77 @@ footer a{
     </div>
     </div>
 </section>
+<!-- PHYSICS SECTION -->
+<section class="science-section">
+  <h2>Physics</h2>
+  <p>Interesting stories of scientists and innovations in Physics.</p>
 
-  <section>
-  <div class="card">
-    <h2>Physics and Chemistry</h2>
-    <p>Innovations and stories of scientists.</p>
+  <div class="science-carousel">
+    <div class="science-track" id="physicsTrack">
 
-    <div class="science-carousel">
-      <button class="carousel-btn left" onclick="moveSlide(-1)">‹</button>
-      <button class="carousel-btn right" onclick="moveSlide(1)">›</button>
-
-      <div class="science-track" id="scienceTrack">
-
-        <div class="science-card physics"
-        data-title="Albert Einstein"
-        data-text="Albert Einstein reshaped physics through relativity, changing how time, space, and energy are understood.">
-          <h3>Albert Einstein</h3>
-          <span>1905 · Relativity</span>
-          <p>Time and space redefined.</p>
-        </div>
-
-        <div class="science-card physics"
-        data-title="C. V. Raman"
-        data-text="C. V. Raman discovered the Raman Effect, a key method used in material and chemical analysis.">
-          <h3>C. V. Raman</h3>
-          <span>1930 · Nobel Prize</span>
-          <p>Light scattering discovery.</p>
-        </div>
-
-        <div class="science-card chemistry"
-        data-title="Marie Curie"
-        data-text="Marie Curie pioneered radioactivity and became the first person to win two Nobel Prizes.">
-          <h3>Marie Curie</h3>
-          <span>1911 · Radioactivity</span>
-          <p>Atomic science pioneer.</p>
-        </div>
-
-        <div class="science-card chemistry"
-        data-title="Green Chemistry"
-        data-text="Green chemistry focuses on sustainable chemical processes that reduce waste and environmental harm.">
-          <h3>Green Chemistry</h3>
-          <span>Modern Era</span>
-          <p>Sustainable chemical science.</p>
-        </div>
-
+      <div class="science-card physics"
+      data-title="Albert Einstein"
+      data-text="Einstein changed physics with relativity, redefining time, space, and energy.">
+        <h3>Albert Einstein</h3>
+        <span>1905 · Relativity</span>
+        <p>Time and space redefined.</p>
       </div>
-    </div>
 
-    <div class="carousel-dots" id="scienceDots">
-      <span class="active"></span>
-      <span></span>
-      <span></span>
-      <span></span>
+      <div class="science-card physics"
+      data-title="C. V. Raman"
+      data-text="C. V. Raman discovered the Raman Effect, foundational for spectroscopy.">
+        <h3>C. V. Raman</h3>
+        <span>1930 · Nobel Prize</span>
+        <p>Light scattering discovery.</p>
+      </div>
+
+      <div class="science-card physics"
+      data-title="Quantum Computing"
+      data-text="Quantum computing uses superposition to solve problems faster than classical computers.">
+        <h3>Quantum Computing</h3>
+        <span>Modern Era</span>
+        <p>Computing beyond classical limits.</p>
+      </div>
+
     </div>
   </div>
-  </section>
+</section>
+
+<!-- CHEMISTRY SECTION -->
+<section class="science-section">
+  <h2>Chemistry</h2>
+  <p>Interesting stories of scientists and innovations in Chemistry.</p>
+
+  <div class="science-carousel">
+    <div class="science-track" id="chemistryTrack">
+
+      <div class="science-card chemistry"
+      data-title="Marie Curie"
+      data-text="Marie Curie pioneered radioactivity and became the first person to win two Nobel Prizes.">
+        <h3>Marie Curie</h3>
+        <span>1911 · Radioactivity</span>
+        <p>Atomic science pioneer.</p>
+      </div>
+
+      <div class="science-card chemistry"
+      data-title="Green Chemistry"
+      data-text="Green chemistry focuses on sustainable chemical processes reducing waste and toxicity.">
+        <h3>Green Chemistry</h3>
+        <span>21st Century</span>
+        <p>Sustainable chemical science.</p>
+      </div>
+
+      <div class="science-card chemistry"
+      data-title="Lithium-Ion Batteries"
+      data-text="Lithium-ion batteries powered modern devices and electric vehicles.">
+        <h3>Lithium-Ion Batteries</h3>
+        <span>Modern Era</span>
+        <p>Powering modern life.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="card">
@@ -409,20 +415,45 @@ const observer=new IntersectionObserver(e=>{
   })
 },{threshold:0.15});
 sections.forEach(s=>observer.observe(s));
-  
-  /* Add Science */
-let index=0;
-const track=document.getElementById("scienceTrack");
-const dots=document.querySelectorAll("#scienceDots span");
 
-function moveSlide(step){
-  index+=step;
-  index=Math.max(0,Math.min(index,dots.length-1));
-  track.style.transform=`translateX(-${index*344}px)`;
-  dots.forEach(d=>d.classList.remove("active"));
-  dots[index].classList.add("active");
+// Enable swipe dragging for multiple tracks
+function enableSwipe(trackId){
+  const track=document.getElementById(trackId);
+  let isDown=false;
+  let startX;
+  let scrollLeft;
+
+  track.addEventListener("mousedown", e=>{
+    isDown=true;
+    track.classList.add("grabbing");
+    startX=e.pageX - track.offsetLeft;
+    scrollLeft=track.scrollLeft;
+  });
+  track.addEventListener("mouseleave", ()=>{isDown=false; track.classList.remove("grabbing");});
+  track.addEventListener("mouseup", ()=>{isDown=false; track.classList.remove("grabbing");});
+  track.addEventListener("mousemove", e=>{
+    if(!isDown) return;
+    e.preventDefault();
+    const x=e.pageX - track.offsetLeft;
+    const walk=(x-startX)*1; //scroll-fast
+    track.scrollLeft=scrollLeft - walk;
+  });
+
+  // Touch support
+  track.addEventListener("touchstart", e=>{
+    startX=e.touches[0].pageX - track.offsetLeft;
+    scrollLeft=track.scrollLeft;
+  });
+  track.addEventListener("touchmove", e=>{
+    const x=e.touches[0].pageX - track.offsetLeft;
+    const walk=(x-startX)*1;
+    track.scrollLeft=scrollLeft - walk;
+  });
 }
-  
+
+// Enable swipe for both carousels
+enableSwipe("physicsTrack");
+enableSwipe("chemistryTrack");
 </script>
 
 </body>

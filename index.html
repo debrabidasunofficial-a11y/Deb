@@ -129,43 +129,52 @@ iframe{
 }
 
 /* Add Science*/
-  
-/* Carousel wrapper */
-.science-carousel{
-  position:relative;
-  overflow:hidden;
-  margin-top:30px;
+
+.science-section{
+  margin:40px 0;
 }
 
-/* Track container for swipe */
-.science-track{
+.science-section h2{
+  font-size:22px;
+  margin-bottom:8px;
+}
+
+.science-section p{
+  font-size:14px;
+  margin-bottom:20px;
+  color:#ccc;
+}
+
+.science-row{
   display:flex;
+  flex-wrap:wrap;
   gap:24px;
-  scroll-behavior:smooth;
-  overflow-x: auto;
-  padding-bottom:10px;
-}
-.science-track::-webkit-scrollbar{
-  display:none;
+  justify-content:flex-start;
 }
 
-/* Card style */
+/* Cards */
 .science-card{
-  flex:0 0 auto;
-  min-width:300px;
+  flex:1 0 280px;
   border-radius:20px;
-  padding:28px;
+  padding:24px;
   cursor:pointer;
   color:#fff;
+  min-width:280px;
+  max-width:320px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  transition:transform 0.2s ease;
+}
+.science-card:hover{
+  transform:translateY(-6px);
 }
 
-/* Physics card */
+/* Physics */
 .science-card.physics{
   background:linear-gradient(135deg, rgba(20,30,60,0.85), rgba(10,15,30,0.85));
   border-top:3px solid rgba(120,160,255,0.6);
 }
 
-/* Chemistry card */
+/* Chemistry */
 .science-card.chemistry{
   background:linear-gradient(135deg, rgba(20,60,40,0.85), rgba(10,30,20,0.85));
   border-top:3px solid rgba(120,255,180,0.6);
@@ -173,37 +182,67 @@ iframe{
 
 /* Card texts */
 .science-card h3{
-  margin:0 0 8px 0;
+  margin:0 0 6px 0;
   font-size:18px;
 }
 
 .science-card span{
-  display:block;
   font-size:13px;
-  color:#bdbdbd;
   margin-bottom:10px;
+  display:block;
+  color:#bdbdbd;
 }
 
 .science-card p{
   font-size:14px;
   line-height:1.6;
+  color:#cfcfcf;
 }
 
-/* Section heading */
-.science-section h2{
-  margin-bottom:6px;
+/* Modal */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.8);
+  z-index:999;
 }
 
-.science-section p{
-  margin-bottom:20px;
-  color:#ccc;
-  font-size:14px;
+.modal.active{
+  display:flex;
 }
 
-/* Optional: drag cursor */
-.science-track.grabbing{
-  cursor:grabbing;
+.modal-box{
+  max-width:520px;
+  background:rgba(15,15,20,0.95);
+  border-radius:22px;
+  padding:32px;
+  position:relative;
+  color:#f3f3f3;
 }
+
+.modal-box h3{
+  margin-top:0;
+  font-size:22px;
+}
+
+.modal-box p{
+  font-size:15px;
+  line-height:1.7;
+  color:#cfcfcf;
+}
+
+.close-btn{
+  position:absolute;
+  top:16px;
+  right:18px;
+  font-size:20px;
+  cursor:pointer;
+  color:#f3f3f3;
+}
+  
   /* Footer */
 footer{
   padding:50px 12%;
@@ -267,35 +306,48 @@ footer a{
 <section class="science-section">
   <h2>Physics</h2>
   <p>Interesting stories of scientists and innovations in Physics.</p>
+  <div class="science-row">
 
-  <div class="science-carousel">
-    <div class="science-track" id="physicsTrack">
-
-      <div class="science-card physics"
-      data-title="Albert Einstein"
-      data-text="Einstein changed physics with relativity, redefining time, space, and energy.">
-        <h3>Albert Einstein</h3>
-        <span>1905 · Relativity</span>
-        <p>Time and space redefined.</p>
-      </div>
-
-      <div class="science-card physics"
-      data-title="C. V. Raman"
-      data-text="C. V. Raman discovered the Raman Effect, foundational for spectroscopy.">
-        <h3>C. V. Raman</h3>
-        <span>1930 · Nobel Prize</span>
-        <p>Light scattering discovery.</p>
-      </div>
-
-      <div class="science-card physics"
-      data-title="Quantum Computing"
-      data-text="Quantum computing uses superposition to solve problems faster than classical computers.">
-        <h3>Quantum Computing</h3>
-        <span>Modern Era</span>
-        <p>Computing beyond classical limits.</p>
-      </div>
-
+    <div class="science-card physics"
+         data-title="Albert Einstein"
+         data-text="Albert Einstein reshaped physics with the Theory of Relativity in 1905. He introduced the concept that time and space are relative to the observer and energy is equivalent to mass (E=mc²). His work laid the foundation for modern physics, influencing cosmology, quantum theory, and GPS technology.">
+      <h3>Albert Einstein</h3>
+      <span>1905 · Relativity</span>
+      <p>Revolutionized our understanding of space, time, and energy.</p>
     </div>
+
+    <div class="science-card physics"
+         data-title="C. V. Raman"
+         data-text="In 1928, Indian physicist C. V. Raman discovered the Raman Effect, showing how light scatters and changes wavelength when it passes through materials. This discovery won him the Nobel Prize in 1930 and became a crucial tool in chemistry, material science, and medical research.">
+      <h3>C. V. Raman</h3>
+      <span>1930 · Nobel Prize</span>
+      <p>Light scattering discovery that transformed spectroscopy.</p>
+    </div>
+
+    <div class="science-card physics"
+         data-title="Quantum Computing"
+         data-text="Quantum computing uses principles like superposition and entanglement to perform calculations far beyond the capacity of classical computers. Pioneering research in this field is redefining encryption, optimization, and simulation of complex chemical and physical systems.">
+      <h3>Quantum Computing</h3>
+      <span>Modern Era</span>
+      <p>Computing beyond classical limits using quantum principles.</p>
+    </div>
+
+    <div class="science-card physics"
+         data-title="Nikola Tesla"
+         data-text="Nikola Tesla’s work on alternating current (AC) power systems in the late 19th century revolutionized electricity distribution. His inventions, including Tesla coils and early wireless communication experiments, paved the way for modern electrical grids and wireless technologies.">
+      <h3>Nikola Tesla</h3>
+      <span>1880s · AC Power</span>
+      <p>Pioneer of electricity and wireless communication.</p>
+    </div>
+
+    <div class="science-card physics"
+         data-title="Stephen Hawking"
+         data-text="Stephen Hawking made groundbreaking contributions to theoretical physics, especially in black hole dynamics and cosmology. He proposed that black holes emit radiation (Hawking radiation) and worked extensively on the understanding of singularities and the origin of the universe.">
+      <h3>Stephen Hawking</h3>
+      <span>1970s-2018 · Cosmology</span>
+      <p>Expanded our understanding of black holes and the universe.</p>
+    </div>
+
   </div>
 </section>
 
@@ -303,38 +355,60 @@ footer a{
 <section class="science-section">
   <h2>Chemistry</h2>
   <p>Interesting stories of scientists and innovations in Chemistry.</p>
+  <div class="science-row">
 
-  <div class="science-carousel">
-    <div class="science-track" id="chemistryTrack">
-
-      <div class="science-card chemistry"
-      data-title="Marie Curie"
-      data-text="Marie Curie pioneered radioactivity and became the first person to win two Nobel Prizes.">
-        <h3>Marie Curie</h3>
-        <span>1911 · Radioactivity</span>
-        <p>Atomic science pioneer.</p>
-      </div>
-
-      <div class="science-card chemistry"
-      data-title="Green Chemistry"
-      data-text="Green chemistry focuses on sustainable chemical processes reducing waste and toxicity.">
-        <h3>Green Chemistry</h3>
-        <span>21st Century</span>
-        <p>Sustainable chemical science.</p>
-      </div>
-
-      <div class="science-card chemistry"
-      data-title="Lithium-Ion Batteries"
-      data-text="Lithium-ion batteries powered modern devices and electric vehicles.">
-        <h3>Lithium-Ion Batteries</h3>
-        <span>Modern Era</span>
-        <p>Powering modern life.</p>
-      </div>
-
+    <div class="science-card chemistry"
+         data-title="Marie Curie"
+         data-text="Marie Curie pioneered research on radioactivity in the early 20th century. She was the first woman to win a Nobel Prize and the only person to win in two different sciences (Physics and Chemistry). Her work enabled advancements in medical imaging and radiation therapy.">
+      <h3>Marie Curie</h3>
+      <span>1911 · Radioactivity</span>
+      <p>Pioneered radioactivity research and medical applications.</p>
     </div>
+
+    <div class="science-card chemistry"
+         data-title="Green Chemistry"
+         data-text="Green Chemistry focuses on designing chemical processes that minimize environmental impact. It emphasizes using renewable materials, reducing waste, and avoiding toxic substances. This approach is essential for sustainable industry and eco-friendly pharmaceuticals.">
+      <h3>Green Chemistry</h3>
+      <span>21st Century</span>
+      <p>Making chemistry sustainable and environmentally safe.</p>
+    </div>
+
+    <div class="science-card chemistry"
+         data-title="Lithium-Ion Batteries"
+         data-text="The development of lithium-ion batteries in the late 20th century revolutionized portable electronics and electric vehicles. Chemists improved energy density, stability, and recharge cycles, enabling smartphones, laptops, and EVs to function efficiently.">
+      <h3>Lithium-Ion Batteries</h3>
+      <span>Modern Era</span>
+      <p>Powering modern devices and sustainable transportation.</p>
+    </div>
+
+    <div class="science-card chemistry"
+         data-title="Dmitri Mendeleev"
+         data-text="Dmitri Mendeleev created the periodic table in 1869, organizing elements by atomic mass and predicting undiscovered elements. His work became the foundation of modern chemistry, enabling systematic study of chemical behavior and properties.">
+      <h3>Dmitri Mendeleev</h3>
+      <span>1869 · Periodic Table</span>
+      <p>Organized elements and predicted new discoveries.</p>
+    </div>
+
+    <div class="science-card chemistry"
+         data-title="Rosalind Franklin"
+         data-text="Rosalind Franklin’s X-ray diffraction images of DNA in the 1950s provided critical evidence of the double-helix structure. Her work, initially underrecognized, was pivotal to understanding genetics and molecular biology.">
+      <h3>Rosalind Franklin</h3>
+      <span>1952 · DNA Structure</span>
+      <p>Key contributions to the discovery of DNA structure.</p>
+    </div>
+
   </div>
 </section>
 
+<!-- MODAL -->
+<div class="modal" id="scienceModal">
+  <div class="modal-box">
+    <div class="close-btn" onclick="closeModal()">✕</div>
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+  </div>
+</div>
+  
 <section>
   <div class="card">
     <h2>Music</h2>
@@ -416,44 +490,22 @@ const observer=new IntersectionObserver(e=>{
 },{threshold:0.15});
 sections.forEach(s=>observer.observe(s));
 
-// Enable swipe dragging for multiple tracks
-function enableSwipe(trackId){
-  const track=document.getElementById(trackId);
-  let isDown=false;
-  let startX;
-  let scrollLeft;
+// Modal click
+const modal=document.getElementById("scienceModal");
+const titleBox=document.getElementById("modalTitle");
+const textBox=document.getElementById("modalText");
 
-  track.addEventListener("mousedown", e=>{
-    isDown=true;
-    track.classList.add("grabbing");
-    startX=e.pageX - track.offsetLeft;
-    scrollLeft=track.scrollLeft;
+document.querySelectorAll(".science-card").forEach(card=>{
+  card.addEventListener("click", ()=>{
+    titleBox.textContent=card.dataset.title;
+    textBox.textContent=card.dataset.text;
+    modal.classList.add("active");
   });
-  track.addEventListener("mouseleave", ()=>{isDown=false; track.classList.remove("grabbing");});
-  track.addEventListener("mouseup", ()=>{isDown=false; track.classList.remove("grabbing");});
-  track.addEventListener("mousemove", e=>{
-    if(!isDown) return;
-    e.preventDefault();
-    const x=e.pageX - track.offsetLeft;
-    const walk=(x-startX)*1; //scroll-fast
-    track.scrollLeft=scrollLeft - walk;
-  });
+});
 
-  // Touch support
-  track.addEventListener("touchstart", e=>{
-    startX=e.touches[0].pageX - track.offsetLeft;
-    scrollLeft=track.scrollLeft;
-  });
-  track.addEventListener("touchmove", e=>{
-    const x=e.touches[0].pageX - track.offsetLeft;
-    const walk=(x-startX)*1;
-    track.scrollLeft=scrollLeft - walk;
-  });
+function closeModal(){
+  modal.classList.remove("active");
 }
-
-// Enable swipe for both carousels
-enableSwipe("physicsTrack");
-enableSwipe("chemistryTrack");
 </script>
 
 </body>

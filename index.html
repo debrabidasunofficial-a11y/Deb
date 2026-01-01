@@ -128,6 +128,107 @@ iframe{
   color:var(--muted);
 }
 
+  
+.science-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+  margin-top:30px;
+}
+
+.science-lane{overflow:hidden}
+
+.science-title{
+  font-size:14px;
+  letter-spacing:3px;
+  color:#e0d7b8;
+  margin-bottom:14px;
+}
+
+.science-track{
+  display:flex;
+  gap:24px;
+  animation:scrollLeft 45s linear infinite;
+}
+
+.science-track:hover{
+  animation-play-state:paused;
+}
+
+.science-card{
+  min-width:300px;
+  background:rgba(0,0,0,0.45);
+  border-radius:20px;
+  padding:28px;
+  border-top:3px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+}
+
+.science-card h3{
+  margin:0;
+  font-size:18px;
+  color:#f3f3f3;
+}
+
+.science-card span{
+  display:block;
+  margin:6px 0 12px;
+  font-size:13px;
+  color:#bdbdbd;
+}
+
+.science-card p{
+  font-size:14px;
+  line-height:1.6;
+  color:#cfcfcf;
+}
+
+@keyframes scrollLeft{
+  from{transform:translateX(0)}
+  to{transform:translateX(-100%)}
+}
+
+/* modal */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.modal.active{display:flex}
+
+.modal-box{
+  max-width:520px;
+  background:rgba(15,15,20,0.95);
+  border-radius:22px;
+  padding:32px;
+  position:relative;
+}
+
+.modal-box h3{
+  margin-top:0;
+  font-size:22px;
+}
+
+.modal-box p{
+  font-size:15px;
+  line-height:1.7;
+  color:#cfcfcf;
+}
+
+.close-btn{
+  position:absolute;
+  top:16px;
+  right:18px;
+  cursor:pointer;
+  font-size:18px;
+  color:#cfcfcf;
+}
+
 footer{
   padding:50px 12%;
   text-align:center;
@@ -186,6 +287,87 @@ footer a{
     </div>
     </div>
 </section>
+
+  <section>
+  <div class="card">
+    <h2>Physics and Chemistry</h2>
+    <p>Innovations and stories that shaped science.</p>
+
+    <div class="science-wrap">
+
+      <div class="science-lane">
+        <div class="science-title">PHYSICS</div>
+        <div class="science-track">
+
+          <div class="science-card"
+          data-title="Albert Einstein"
+          data-text="In 1905, Albert Einstein proposed special relativity, changing how time, space, and energy are understood. His work laid the foundation of modern physics.">
+            <h3>Albert Einstein</h3>
+            <span>1905 · Relativity</span>
+            <p>Redefined time and space.</p>
+          </div>
+
+          <div class="science-card"
+          data-title="C. V. Raman"
+          data-text="C. V. Raman discovered the Raman Effect in 1928, showing how light scatters and changes wavelength. It became essential for chemical and material analysis.">
+            <h3>C. V. Raman</h3>
+            <span>1930 · Nobel Prize</span>
+            <p>Light scattering discovery.</p>
+          </div>
+
+          <div class="science-card"
+          data-title="Quantum Computing"
+          data-text="Quantum computing uses quantum states like superposition and entanglement to process information far beyond classical limits.">
+            <h3>Quantum Computing</h3>
+            <span>Modern Era</span>
+            <p>Computing beyond classical limits.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="science-lane">
+        <div class="science-title">CHEMISTRY</div>
+        <div class="science-track">
+
+          <div class="science-card"
+          data-title="Marie Curie"
+          data-text="Marie Curie pioneered the study of radioactivity and became the first person to win two Nobel Prizes in different sciences.">
+            <h3>Marie Curie</h3>
+            <span>1911 · Radioactivity</span>
+            <p>Opened nuclear chemistry.</p>
+          </div>
+
+          <div class="science-card"
+          data-title="Green Chemistry"
+          data-text="Green chemistry focuses on designing chemical processes that reduce waste, toxicity, and environmental impact.">
+            <h3>Green Chemistry</h3>
+            <span>21st Century</span>
+            <p>Sustainable chemical science.</p>
+          </div>
+
+          <div class="science-card"
+          data-title="Battery Innovation"
+          data-text="Advances in lithium-ion batteries power modern electronics, electric vehicles, and renewable energy storage.">
+            <h3>Battery Innovation</h3>
+            <span>Energy Storage</span>
+            <p>Powering modern life.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="scienceModal">
+  <div class="modal-box">
+    <div class="close-btn" onclick="closeModal()">✕</div>
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+  </div>
+</div>
   
 <section>
   <div class="card">
@@ -267,6 +449,22 @@ const observer=new IntersectionObserver(e=>{
   })
 },{threshold:0.15});
 sections.forEach(s=>observer.observe(s));
+  
+const modal=document.getElementById("scienceModal");
+const titleBox=document.getElementById("modalTitle");
+const textBox=document.getElementById("modalText");
+
+document.querySelectorAll(".science-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    titleBox.textContent=card.dataset.title;
+    textBox.textContent=card.dataset.text;
+    modal.classList.add("active");
+  });
+});
+
+function closeModal(){
+  modal.classList.remove("active");
+}
 </script>
 
 </body>

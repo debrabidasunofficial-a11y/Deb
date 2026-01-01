@@ -16,7 +16,6 @@
 }
 
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -94,26 +93,38 @@ p{max-width:720px;color:var(--muted)}
   background:rgba(0,0,0,0.45);
   border-radius:18px;
   overflow:hidden;
-  transition:transform 0.4s ease;
+  padding:16px;
 }
-.media-card:hover{transform:translateY(-6px)}
 
 .media-card img{
   width:100%;
   height:260px;
   object-fit:cover;
-}
-
-.media-card iframe{
-  width:100%;
-  height:80px;
-  border:none;
+  border-radius:12px;
 }
 
 .media-card .label{
-  padding:14px;
+  margin:12px 0 8px;
   text-align:center;
   font-size:14px;
+  color:var(--muted);
+}
+
+audio{
+  width:100%;
+  margin-top:8px;
+}
+
+iframe{
+  width:100%;
+  height:260px;
+  border-radius:12px;
+  border:none;
+}
+
+/* favourite list */
+.fav-list div{
+  margin-bottom:10px;
   color:var(--muted);
 }
 
@@ -168,17 +179,17 @@ footer a{
       <div class="media-card">
         <img src="khawne-gora.jpg" alt="">
         <div class="label">Khawne Gora Chand Khwane Kala</div>
-        <iframe src="https://open.spotify.com/embed/track/REPLACE_ID_1"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
+        <audio controls>
+          <source src="khawne-gora.mp3" type="audio/mpeg">
+        </audio>
       </div>
 
       <div class="media-card">
         <img src="kadam-kadam.jpg" alt="">
         <div class="label">Kadam Kadam Badhiye Ja</div>
-        <iframe src="https://open.spotify.com/embed/track/REPLACE_ID_2"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
+        <audio controls>
+          <source src="kadam-kadam.mp3" type="audio/mpeg">
+        </audio>
       </div>
     </div>
   </div>
@@ -203,8 +214,24 @@ footer a{
 
 <section>
   <div class="card">
-    <h2>Ideology</h2>
-    <p>Clarity over noise. Roots over trends. Work without announcement.</p>
+    <h2>Favourite Video</h2>
+    <iframe
+      src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>Favourites</h2>
+    <div class="fav-list">
+      <div>Music with meaning</div>
+      <div>Character driven cinema</div>
+      <div>Books on identity and society</div>
+      <div>Silence and early mornings</div>
+    </div>
   </div>
 </section>
 

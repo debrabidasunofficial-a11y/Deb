@@ -8,215 +8,219 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #0b0b0b;
-  --text: #eaeaea;
-  --muted: #9a9a9a;
-  --accent: #c2b59b;
+:root{
+  --text:#f3f3f3;
+  --muted:#cfcfcf;
+  --card:rgba(15,15,20,0.75);
+  --radius:22px;
 }
 
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  color:var(--text);
+  background:linear-gradient(135deg,#1b1f3b,#2d1b3b,#1b3b2f);
+  background-attachment:fixed;
+  line-height:1.7;
 }
 
-html {
-  scroll-behavior: smooth;
+/* film grain */
+.grain{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity:0.12;
+  z-index:1;
+}
+body>*{position:relative;z-index:2}
+
+section{
+  padding:90px 12%;
+  display:flex;
+  justify-content:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
+}
+section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, sans-serif;
-  line-height: 1.7;
+.card{
+  width:100%;
+  max-width:900px;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:60px;
+  backdrop-filter:blur(12px);
 }
 
-section {
-  padding: 100px 12%;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+h1,h2{
+  font-family:Playfair Display,serif;
+  font-weight:400;
+  margin-top:0;
+}
+h1{font-size:52px}
+h2{font-size:32px;margin-bottom:18px}
+
+p{max-width:720px;color:var(--muted)}
+
+.hero{
+  min-height:100vh;
+  align-items:center;
+}
+.hero .card{background:rgba(0,0,0,0.55)}
+.hero span{
+  font-size:13px;
+  letter-spacing:4px;
+  color:#e0d7b8;
 }
 
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* media */
+.media-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+  margin-top:30px;
 }
 
-h1, h2 {
-  font-family: Playfair Display, serif;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+.media-card{
+  background:rgba(0,0,0,0.45);
+  border-radius:18px;
+  overflow:hidden;
+  transition:transform 0.4s ease;
+}
+.media-card:hover{transform:translateY(-6px)}
+
+.media-card img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
 }
 
-h1 {
-  font-size: 56px;
-  margin: 10px 0;
+.media-card iframe{
+  width:100%;
+  height:80px;
+  border:none;
 }
 
-h2 {
-  font-size: 34px;
-  margin-bottom: 20px;
+.media-card .label{
+  padding:14px;
+  text-align:center;
+  font-size:14px;
+  color:var(--muted);
 }
 
-p {
-  max-width: 720px;
-  font-size: 16px;
-  color: var(--muted);
+footer{
+  padding:50px 12%;
+  text-align:center;
+  font-size:14px;
+  color:var(--muted);
+}
+footer a{
+  color:var(--text);
+  margin:0 12px;
+  text-decoration:none;
 }
 
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  background: url("your-image.jpg") center/cover no-repeat;
-}
-
-.hero-overlay {
-  background: rgba(0,0,0,0.55);
-  padding: 60px;
-  max-width: 520px;
-}
-
-.hero span {
-  font-size: 13px;
-  letter-spacing: 4px;
-  color: var(--accent);
-}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.image-grid img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: filter 0.5s ease, transform 0.5s ease;
-}
-
-.image-grid img:hover {
-  filter: grayscale(0%);
-  transform: scale(1.03);
-}
-
-.list div {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: var(--muted);
-}
-
-footer {
-  padding: 50px 12%;
-  text-align: center;
-  font-size: 14px;
-  color: var(--muted);
-  border-top: 1px solid #1e1e1e;
-}
-
-footer a {
-  color: var(--text);
-  margin: 0 12px;
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: var(--accent);
-}
-
-@media (max-width: 768px) {
-  section {
-    padding: 80px 8%;
-  }
-
-  h1 {
-    font-size: 42px;
-  }
-
-  h2 {
-    font-size: 28px;
-  }
+@media(max-width:768px){
+  section{padding:70px 8%}
+  .card{padding:40px}
+  h1{font-size:40px}
+  h2{font-size:26px}
 }
 </style>
 </head>
 
 <body>
+<div class="grain"></div>
 
 <section class="hero visible">
-  <div class="hero-overlay">
+  <div class="card">
     <span>DEBVERSE</span>
     <h1>A Film by Nature</h1>
-    <p>Observations. Identity. Work done in silence.</p>
+    <p>Introduce myself. Deb Rabidas.</p>
   </div>
 </section>
 
 <section>
-  <h2>Myself</h2>
-  <p>
-    I move quietly and observe deeply.
-    I believe identity forms away from noise.
-    DEBVERSE is a personal record of thought, time, and discipline.
-  </p>
-</section>
-
-<section>
-  <h2>A Film by Nature</h2>
-  <p>No script. No direction. Just light and time.</p>
-  <div class="image-grid">
-    <img src="image1.jpg">
-    <img src="image2.jpg">
-    <img src="image3.jpg">
+  <div class="card">
+    <h2>Myself</h2>
+    <p>
+      I am Deb Rabidas.
+      I observe before I speak.
+      I value discipline, clarity, and quiet work.
+      DEBVERSE is my personal universe.
+    </p>
   </div>
 </section>
 
 <section>
-  <h2>Ideology</h2>
-  <div class="list">
-    <div>Clarity over noise</div>
-    <div>Roots over trends</div>
-    <div>Discipline over motivation</div>
-    <div>Work without announcement</div>
+  <div class="card">
+    <h2>Music</h2>
+    <div class="media-grid">
+      <div class="media-card">
+        <img src="khawne-gora.jpg" alt="">
+        <div class="label">Khawne Gora Chand Khwane Kala</div>
+        <iframe src="https://open.spotify.com/embed/track/REPLACE_ID_1"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+      </div>
+
+      <div class="media-card">
+        <img src="kadam-kadam.jpg" alt="">
+        <div class="label">Kadam Kadam Badhiye Ja</div>
+        <iframe src="https://open.spotify.com/embed/track/REPLACE_ID_2"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+      </div>
+    </div>
   </div>
 </section>
 
 <section>
-  <h2>Motivation</h2>
-  <div class="list">
-    <div>Silence sharpens focus</div>
-    <div>Consistency builds identity</div>
-    <div>Stand alone when required</div>
+  <div class="card">
+    <h2>Movies</h2>
+    <div class="media-grid">
+      <div class="media-card">
+        <img src="3idiots.jpg" alt="">
+        <div class="label">3 Idiots</div>
+      </div>
+
+      <div class="media-card">
+        <img src="dhurandhar.jpg" alt="">
+        <div class="label">Dhurandhar</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section>
-  <h2>Music and Movies</h2>
-  <p>Sound and cinema shape emotion and restraint.</p>
+  <div class="card">
+    <h2>Ideology</h2>
+    <p>Clarity over noise. Roots over trends. Work without announcement.</p>
+  </div>
 </section>
 
 <section>
-  <h2>Books and Writing</h2>
-  <p>
-    Reading refines thought.
-    Writing preserves it.
-    Ongoing works reflect society and self.
-  </p>
-</section>
-
-<section>
-  <h2>Organisation. SDA</h2>
-  <p>
-    SDA stands for structure, discipline, and action.
-    An organisation built on leadership and responsibility.
-  </p>
+  <div class="card">
+    <h2>Organisation. SDA</h2>
+    <p>
+      SDA stands for structure, discipline, and action.
+      Built on leadership and responsibility.
+    </p>
+  </div>
 </section>
 
 <footer>
   <div>Copyright © Debverse 2026. All rights reserved.</div>
-  <div style="margin:12px 0;">
+  <div style="margin:12px 0">
     <a href="#">Instagram</a>
     <a href="#">Telegram</a>
     <a href="mailto:yourmail@gmail.com">Gmail</a>
@@ -225,19 +229,13 @@ footer a:hover {
 </footer>
 
 <script>
-const sections = document.querySelectorAll("section");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    }
-  });
-}, { threshold: 0.15 });
-
-sections.forEach(section => {
-  observer.observe(section);
-});
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver(e=>{
+  e.forEach(i=>{
+    if(i.isIntersecting){i.target.classList.add("visible")}
+  })
+},{threshold:0.15});
+sections.forEach(s=>observer.observe(s));
 </script>
 
 </body>

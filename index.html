@@ -130,116 +130,105 @@ iframe{
 
 /* Add Science*/
 .science-section{
-  margin:50px 0;
+  max-width:1100px;
+  margin:80px auto;
   padding:0 20px;
 }
 
-/* Section title and description */
-.science-section h2{
-  font-size:28px;
+.science-header{
   text-align:center;
+  margin-bottom:30px;
+}
+
+.science-header h2{
+  font-size:32px;
   margin-bottom:10px;
 }
 
-.science-section p{
-  text-align:center;
+.science-header p{
   font-size:16px;
-  margin-bottom:25px;
-  color:#ccc;
+  color:#cfcfcf;
 }
 
-/* Carousel wrapper */
+/* carousel */
 .science-carousel{
   overflow:hidden;
-  max-width:100%;
+  width:100%;
 }
 
-/* Track for swipe */
 .science-track{
   display:flex;
   gap:24px;
   overflow-x:auto;
-  scroll-behavior:smooth;
-  padding-bottom:10px;
+  scroll-snap-type:x mandatory;
+  padding:10px 4px 20px;
 }
 .science-track::-webkit-scrollbar{
   display:none;
 }
 
-/* Cards */
+/* cards */
 .science-card{
-  flex:0 0 300px;
-  border-radius:20px;
-  padding:24px;
+  scroll-snap-align:start;
+  flex:0 0 320px;
+  border-radius:22px;
+  padding:22px;
   color:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  transition:all 0.3s ease;
   cursor:pointer;
-  min-width:280px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.4);
-  transition:transform 0.3s ease, max-height 0.3s ease, padding-bottom 0.3s ease;
+  max-height:210px;
   overflow:hidden;
-  max-height:220px;
-  position:relative;
 }
 
-/* Hover effect */
-.science-card:hover{
-  transform:translateY(-4px);
-}
-
-/* Expanded card */
-.science-card.expanded{
-  max-height:600px;
-  padding-bottom:40px;
-}
-
-/* Physics gradient */
-.science-card.physics{
-  background:linear-gradient(135deg, rgba(20,30,60,0.85), rgba(10,15,30,0.85));
-  border-top:3px solid rgba(120,160,255,0.6);
-}
-
-/* Chemistry gradient */
-.science-card.chemistry{
-  background:linear-gradient(135deg, rgba(20,60,40,0.85), rgba(10,30,20,0.85));
-  border-top:3px solid rgba(120,255,180,0.6);
-}
-
-/* Card text */
 .science-card h3{
-  margin:0 0 6px 0;
-  font-size:18px;
+  font-size:20px;
+  margin-bottom:6px;
 }
 
 .science-card span{
   font-size:13px;
-  color:#bdbdbd;
-  margin-bottom:10px;
-  display:block;
+  opacity:0.8;
 }
 
 .science-card p{
   font-size:14px;
-  color:#cfcfcf;
+  margin-top:10px;
   line-height:1.6;
 }
 
-/* Expanded content */
 .science-card .full-text{
-  margin-top:12px;
-  font-size:14px;
-  color:#e0e0e0;
   display:none;
+  margin-top:14px;
+  opacity:0.95;
+}
+
+/* expand */
+.science-card.expanded{
+  max-height:600px;
 }
 .science-card.expanded .full-text{
   display:block;
 }
 
-/* Responsive */
-@media(max-width:700px){
+/* themes */
+.physics{
+  background:linear-gradient(135deg,#1b2b55,#0c132a);
+  border-top:3px solid #6fa3ff;
+}
+
+.chemistry{
+  background:linear-gradient(135deg,#184a36,#0e2b1f);
+  border-top:3px solid #6affb2;
+}
+
+/* mobile */
+@media(max-width:600px){
   .science-card{
-    flex:0 0 80%;
+    flex:0 0 85%;
   }
 }
+  
   /* Footer */
 footer{
   padding:50px 12%;
@@ -373,6 +362,7 @@ footer a{
   </div>
 </section>
 
+
   <div class="card">
     <h2>Music</h2>
     <div class="media-grid">
@@ -453,13 +443,12 @@ const observer=new IntersectionObserver(e=>{
 },{threshold:0.15});
 sections.forEach(s=>observer.observe(s));
 
-// Inline card expand
 document.querySelectorAll(".science-card").forEach(card=>{
-  card.addEventListener("click", ()=>{
-    const expanded = card.classList.contains("expanded");
-    const track = card.closest(".science-track");
+  card.addEventListener("click",()=>{
+    const open = card.classList.contains("expanded");
+    const track = card.parentElement;
     track.querySelectorAll(".science-card").forEach(c=>c.classList.remove("expanded"));
-    if(!expanded) card.classList.add("expanded");
+    if(!open) card.classList.add("expanded");
   });
 });
 </script>
